@@ -4,9 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vat Die Pad</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f7f7f7; }
+    .hero { background: #1f2937; color: white; padding: 60px 20px; text-align: center; }
+    .hero h1 { font-size: 48px; margin-bottom: 10px; }
+    .search { max-width: 600px; margin: 20px auto; display: flex; gap: 10px; }
+    .search input { flex: 1; padding: 14px; border-radius: 8px; border: none; }
+    .search button { padding: 14px 20px; border: none; border-radius: 8px; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 40px; }
+    .card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  </style>
 </head>
 <body>
-  <h1>Vat Die Pad</h1>
-  <p>Proudly South African guesthouses & B&Bs</p>
+  <section class="hero">
+    <h1>Vat Die Pad</h1>
+    <p>Find your perfect guesthouse or B&B in South Africa</p>
+    <div class="search">
+      <input placeholder="Search Cape Town, Durban, Knysna..." />
+      <button>Search</button>
+    </div>
+  </section>
+
+  <section class="cards">
+    <div class="card">
+      <h3>Sea Breeze Guesthouse</h3>
+      <p>Cape Town</p>
+      <p>From R1200/night</p>
+    </div>
+    <div class="card">
+      <h3>Winelands B&B</h3>
+      <p>Stellenbosch</p>
+      <p>From R950/night</p>
+    </div>
+    <div class="card">
+      <h3>Garden Route Stay</h3>
+      <p>Knysna</p>
+      <p>From R1100/night</p>
+    </div>
+  </section>
 </body>
 </html>
