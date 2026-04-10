@@ -74,5 +74,34 @@
     <button type="submit" style="padding:14px 18px; border:none; border-radius:8px; background:#1f2937; color:#fff; font-weight:bold; cursor:pointer;">Add Property Listing</button>
   </form>
 </section>
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+const supabase = createClient(
+  "https://ezeesaqfasitgaivvsjo.supabase.co",
+  "PASTE_YOUR_PUBLISHABLE_KEY_HERE"
+);
+
+document.querySelector("form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const inputs = document.querySelectorAll("input, textarea");
+
+  const { error } = await supabase.from("properties").insert([
+    {
+      name: inputs[0].value,
+      city: inputs[1].value,
+      price: inputs[2].value,
+      host_name: inputs[4].value
+    }
+  ]);
+
+  if (!error) {
+    alert("Property submitted successfully!");
+  } else {
+    alert("Error saving property");
+  }
+});
+</script>
 </body>
 </html>
