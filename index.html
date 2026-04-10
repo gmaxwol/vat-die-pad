@@ -96,10 +96,10 @@ const phone = allInputs[6]?.value || "";
 
 const { error } = await supabase.from("properties").insert([
   {
-    host_name: phone,
-    name: propertyName,
-    city: city,
-    price: price
+    name: document.querySelector('input[placeholder*="Property"]').value,
+    city: document.querySelector('input[placeholder*="City"]').value,
+    price: parseFloat(document.querySelector('input[type="number"]').value),
+    host_name: document.querySelector('input[placeholder*="Phone"]').value
   }
 ]);
 
