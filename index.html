@@ -101,7 +101,32 @@ const description = allInputs[3]?.value || "";
 const amenities = allInputs[4]?.value || "";
 const phone = allInputs[6]?.value || "";
 
+const fileInput = document.querySelector('input[type="file"]');
+const file = fileInput.files[0];
+
+let imageUrl = "";
+
+if (file) {
+  const fileName = `${Date.now()}-${file.name}`;
+
+  const { error: uploadError } = await supabase.storage
+    .from("property-images")
+    .upload(fileName, file);
+
+  if (!uploadError) {
+    imageUrl = `https://ezeesaqfasitgaivvsjo.supabase.co/storage/v1/object/public/property-images/${fileName}`;
+  }
+}
+
 const { error } = await supabase.from("properties").insert([
+  {
+    host_name: document.getElementById("host-phone").value,
+    name: document.getElementById("property-name").value,
+    city: document.getElementById("property-city").value,
+    price: parseFloat(document.getElementById("property-price").value),
+    image_url: imageUrl
+  }
+]);
   {
     host_name: document.getElementById("host-phone").value,
     name: document.getElementById("property-name").value,
@@ -135,11 +160,12 @@ async function loadProperties() {
     card.className = "dynamic-card";
 
     card.innerHTML = `
-      <h3>${property.name}</h3>
-      <p>${property.city}</p>
-      <p>From R${property.price}/night</p>
-      <p>Contact: ${property.host_name}</p>
-    `;
+  <img src="${property.image_url || ''}" style="width:100%; border-radius:12px; margin-bottom:12px;">
+  <h3>${property.name}</h3>
+  <p>${property.city}</p>
+  <p>From R${property.price}/night</p>
+  <p>Contact: ${property.host_name}</p>
+`;
 
     container.appendChild(card);
   });
