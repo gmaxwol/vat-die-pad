@@ -102,19 +102,25 @@ const amenities = allInputs[4]?.value || "";
 const phone = allInputs[6]?.value || "";
 
 const fileInput = document.querySelector('input[type="file"]');
-const file = fileInput.files[0];
+const file = fileInput?.files?.[0];
 
 let imageUrl = "";
 
 if (file) {
   const fileName = `${Date.now()}-${file.name}`;
 
-  const { error: uploadError } = await supabase.storage
+  const uploadResult = await supabase.storage
     .from("property-images")
     .upload(fileName, file);
 
-  if (!uploadError) {
+  console.log("UPLOAD RESULT:", uploadResult);
+
+  if (!uploadResult.error) {
     imageUrl = `https://ezeesaqfasitgaivvsjo.supabase.co/storage/v1/object/public/property-images/${fileName}`;
+  } else {
+    alert(uploadResult.error.message);
+  }
+}
   }
 }
 
