@@ -63,13 +63,13 @@
   <h2 style="text-align:center; margin-bottom:10px;">Host Self-Service Portal</h2>
   <p style="text-align:center; margin-bottom:30px;">Hosts can add their property details, images, and contact information directly from the website.</p>
   <form style="max-width:700px; margin:0 auto; display:grid; gap:16px;">
-    <input type="text" placeholder="Property Name" style="padding:14px; border-radius:8px; border:1px solid #ccc;" />
-    <input type="text" placeholder="Location (City / Town)" style="padding:14px; border-radius:8px; border:1px solid #ccc;" />
-    <input type="number" placeholder="Price per night (R)" style="padding:14px; border-radius:8px; border:1px solid #ccc;" />
+    <input id="property-name" placeholder="Property Name">style="padding:14px; border-radius:8px; border:1px solid #ccc;" />
+    <input id="property-city" placeholder="City"> style="padding:14px; border-radius:8px; border:1px solid #ccc;" />
+    <input id="property-price" type="number" placeholder="Price"> style="padding:14px; border-radius:8px; border:1px solid #ccc;" />
     <textarea placeholder="Describe your property, rooms, and amenities" rows="5" style="padding:14px; border-radius:8px; border:1px solid #ccc;"></textarea>
     <input type="text" placeholder="Amenities (WiFi, Pool, Parking)" style="padding:14px; border-radius:8px; border:1px solid #ccc;" />
     <input type="file" accept="image/*" multiple style="padding:14px; border-radius:8px; border:1px solid #ccc; background:#fff;" />
-    <input type="tel" placeholder="WhatsApp / Contact Number" style="padding:14px; border-radius:8px; border:1px solid #ccc;" />
+    <input id="host-phone" placeholder="Phone Number">style="padding:14px; border-radius:8px; border:1px solid #ccc;" />
     <input type="email" placeholder="Email Address" style="padding:14px; border-radius:8px; border:1px solid #ccc;" />
     <button type="submit" style="padding:14px 18px; border:none; border-radius:8px; background:#1f2937; color:#fff; font-weight:bold; cursor:pointer;">Add Property Listing</button>
   </form>
@@ -96,10 +96,10 @@ const phone = allInputs[6]?.value || "";
 
 const { error } = await supabase.from("properties").insert([
   {
-    name: document.querySelector('input[placeholder*="Property"]').value,
-    city: document.querySelector('input[placeholder*="City"]').value,
-    price: parseFloat(document.querySelector('input[type="number"]').value),
-    host_name: document.querySelector('input[placeholder*="Phone"]').value
+    host_name: document.getElementById("host-phone").value,
+    name: document.getElementById("property-name").value,
+    city: document.getElementById("property-city").value,
+    price: parseFloat(document.getElementById("property-price").value)
   }
 ]);
 
