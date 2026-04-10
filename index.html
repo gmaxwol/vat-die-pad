@@ -87,12 +87,12 @@ document.querySelector("form").addEventListener("submit", async (e) => {
 
   const inputs = document.querySelectorAll("input, textarea");
 
-  const { error } = await supabase.from("properties").insert([
+const { error } = await supabase.from("properties").insert([
   {
-    name: document.querySelector('input[placeholder*="property"], input[placeholder*="Property"]').value,
-    city: document.querySelector('input[placeholder*="city"], input[placeholder*="City"]').value,
-    price: Number(document.querySelector('input[placeholder*="price"], input[placeholder*="Price"]').value),
-    host_name: document.querySelector('input[placeholder*="phone"], input[placeholder*="Phone"]').value
+    name: inputs[0].value,
+    city: inputs[1].value,
+    price: Number(inputs[2].value),
+    host_name: inputs[4].value
   }
 ]);
 
