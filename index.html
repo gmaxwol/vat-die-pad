@@ -89,10 +89,10 @@ document.querySelector("form").addEventListener("submit", async (e) => {
 
 const { error } = await supabase.from("properties").insert([
   {
-    host_name: inputs[6].value,
-    name: inputs[0].value,
-    city: inputs[1].value,
-    price: parseFloat(document.querySelector('input[type="number"]').value)
+    name: document.querySelector('input[placeholder*="Property"]').value,
+    city: document.querySelector('input[placeholder*="City"]').value,
+    price: parseFloat(document.querySelector('input[type="number"]').value),
+    host_name: document.querySelector('input[placeholder*="Phone"]').value
   }
 ]);
 
