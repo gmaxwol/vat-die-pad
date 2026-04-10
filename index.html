@@ -120,11 +120,7 @@ if (file) {
   } else {
     alert(uploadResult.error.message);
   }
-}
-  }
-}
-
-const { error } = await supabase.from("properties").insert([
+  const { error } = await supabase.from("properties").insert([
   {
     host_name: document.getElementById("host-phone").value,
     name: document.getElementById("property-name").value,
