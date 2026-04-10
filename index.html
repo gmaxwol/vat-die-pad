@@ -99,7 +99,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
   if (!error) {
     alert("Property submitted successfully!");
   } else {
-    alert("Error saving property");
+    alert(error.message);
   }
 });
 </script>
