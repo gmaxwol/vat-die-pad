@@ -85,14 +85,21 @@ const supabase = createClient(
 document.querySelector("form").addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const inputs = document.querySelectorAll("input, textarea");
+const allInputs = document.querySelectorAll("input, textarea");
+
+const propertyName = allInputs[0]?.value || "";
+const city = allInputs[1]?.value || "";
+const price = parseFloat(allInputs[2]?.value || 0);
+const description = allInputs[3]?.value || "";
+const amenities = allInputs[4]?.value || "";
+const phone = allInputs[6]?.value || "";
 
 const { error } = await supabase.from("properties").insert([
   {
-    name: document.querySelector('input[placeholder*="Property"]').value,
-    city: document.querySelector('input[placeholder*="City"]').value,
-    price: parseFloat(document.querySelector('input[type="number"]').value),
-    host_name: document.querySelector('input[placeholder*="Phone"]').value
+    host_name: phone,
+    name: propertyName,
+    city: city,
+    price: price
   }
 ]);
 
